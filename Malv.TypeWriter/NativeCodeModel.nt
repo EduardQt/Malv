@@ -1,0 +1,79 @@
+{{- # Helper classes }}
+{{- func IsNullable(type)
+        value = ""
+        if (type.IsNullable)
+            value = "?"
+        end
+    
+        ret value
+    end
+}}
+{{- func Extends(type)
+        value = ""
+        if (type.BaseClass != null)
+            value = "extends " + type.BaseClass.Name
+        end
+    
+        ret value
+    end
+}}
+{{- for class in data.Classes | Symbols.WhereNameEndsWith "_Req"
+    capture output -}}
+{{- for type in (class | Type.AllReferencedTypes)}}
+{{ "import { " | String.Append (type | Custom.NoQuestionMark) | String.Append " } from './" | String.Append (type | Custom.NoQuestionMark) | String.Append "';" }}
+{{-end}}
+
+export interface {{ class.Name }} {{ class | Extends }} {
+    {{- for property in class.Properties | Symbols.ThatArePublic }}
+    {{ property.Name | String.ToCamelCase }}: {{ property.Type | Custom.ToTypeScriptType }};
+        {{- end }}
+}
+{{- end
+    filePath =  "/Users/eduard/RiderProjects/Malv/malv-react/src/network/Models/" | String.Append class.BareName | String.Append ".ts"
+    Save output filePath
+    end }}
+    
+{{- for class in data.Classes | Symbols.WhereNameEndsWith "_Res"
+    capture output -}}
+{{- for type in (class | Type.AllReferencedTypes)}}
+{{ "import { " | String.Append type | String.Append " } from './" | String.Append type | String.Append "';" }}
+{{-end}}
+
+export interface {{ class.Name }} {
+    {{- for property in class.Properties | Symbols.ThatArePublic }}
+    {{ property.Name | String.ToCamelCase }}: {{ property.Type | Custom.ToTypeScriptType }};
+    {{- end }}
+}
+{{- end
+    filePath = "/Users/eduard/RiderProjects/Malv/malv-react/src/network/Models/" | String.Append class.BareName | String.Append ".ts"
+    Save output filePath
+    end }}
+    
+{{- for enum in data.Enums | Symbols.WhereNameEndsWith "_Mod"
+    capture output -}}
+
+export enum {{ enum.Name }} {
+    {{- for enumValue in enum.Values }}
+    {{ enumValue.Name | Custom.ToSnakeCase }} = {{ enumValue.Value }},
+    {{- end }}
+}
+{{- end
+    filePath = "/Users/eduard/RiderProjects/Malv/malv-react/src/network/Models/" | String.Append enum.BareName | String.Append ".ts"
+    Save output filePath
+    end }}
+
+{{- for class in data.Classes | Symbols.WhereNameEndsWith "_Mod"
+    capture output -}}
+{{- for type in (class | Type.AllReferencedTypes)}}
+{{ "import { " | String.Append type | String.Append " } from './" | String.Append type | String.Append "';" }}
+{{-end}}
+
+export interface {{ class.Name }} {
+    {{- for property in class.Properties | Symbols.ThatArePublic }}
+    {{ property.Name | String.ToCamelCase }}{{property.Type | IsNullable}}: {{ property.Type | Type.ToTypeScriptType }};
+    {{- end }}
+}
+{{- end
+    filePath = "/Users/eduard/RiderProjects/Malv/malv-react/src/network/Models/" | String.Append class.BareName | String.Append ".ts"
+    Save output filePath
+    end }}

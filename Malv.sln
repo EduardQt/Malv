@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Malv", "Malv\Malv.csproj", "{D70B1EE9-FE2D-4171-8021-061720722A77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Malv.TypeWriter", "Malv.TypeWriter\Malv.TypeWriter.csproj", "{D246E4E7-E745-42C6-96B6-3D9F6ED7316A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Malv.MobileDe", "Malv.MobileDe\Malv.MobileDe.csproj", "{83BDDB40-2058-4037-A1B5-68A599F32F3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D70B1EE9-FE2D-4171-8021-061720722A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70B1EE9-FE2D-4171-8021-061720722A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70B1EE9-FE2D-4171-8021-061720722A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70B1EE9-FE2D-4171-8021-061720722A77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D246E4E7-E745-42C6-96B6-3D9F6ED7316A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D246E4E7-E745-42C6-96B6-3D9F6ED7316A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D246E4E7-E745-42C6-96B6-3D9F6ED7316A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D246E4E7-E745-42C6-96B6-3D9F6ED7316A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83BDDB40-2058-4037-A1B5-68A599F32F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83BDDB40-2058-4037-A1B5-68A599F32F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83BDDB40-2058-4037-A1B5-68A599F32F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83BDDB40-2058-4037-A1B5-68A599F32F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
