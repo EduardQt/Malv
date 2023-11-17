@@ -12,6 +12,8 @@ public class CarAd
     public int Age { get; set; }
     
     public int Mileage { get; set; }
+    public int HorsePower { get; set; }
+    public bool AllWheelDrive { get; set; }
     
     public TransmissionType TransmissionType { get; set; }
     

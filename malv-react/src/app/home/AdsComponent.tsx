@@ -1,15 +1,13 @@
 import {useEffect, useState} from "react";
-import {Button, Col, Container, Input, Row, Spinner} from "reactstrap";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Button, Col, Container, Input, InputGroup, Row, Spinner} from "reactstrap";
+import {useLocation} from "react-router-dom";
 import {ServiceContainer} from "../../services/ServiceContainer";
 import {Ad_Mod} from "../../network/Models/Ad_Mod";
-import {AdImage} from "../../network/APIData";
 import {MunicipalityPicker, MunicipalitySelection} from "../shared/MunicipalityPicker";
-import {Routes} from "../../Routes";
 import {Category_Mod} from "../../network/Models/Category_Mod";
 import {AdsCategoriesComponent} from "./Ads/AdsCategoriesComponent";
-import {CarCategoryPicker} from "../shared/CarCategoryPicker";
-import {CategoryType_Mod} from "../../network/Models/CategoryType_Mod";
+import {AdRowComponent} from "./Ads/AdRowComponent";
+import {Search_Order_Mod} from "../../network/Models/Search_Order_Mod";
 
 export interface AdsComponentRouteState {
     query: string;
@@ -27,7 +25,6 @@ export const AdsComponent = () => {
     const [categoryId, setCategoryId] = useState<number | null>(null);
     const [query, setQuery] = useState<string>('');
     const location = useLocation();
-    const navigate = useNavigate();
 
     const [categories, setCategories] = useState<Category_Mod[]>([]);
     const [rootCategory, setRootCategory] = useState<Category_Mod>();
@@ -44,7 +41,9 @@ export const AdsComponent = () => {
             adService.search({
                 query: mapped.query,
                 municipalityId: mapped.municipalityId,
-                categoryId: mapped.categoryId
+                categoryId: mapped.categoryId,
+                order: Search_Order_Mod.DATE_ASC,
+                carFilter: {}
             }).then(result => {
                 setAds(result.ads);
                 setCategories(result.categories);
@@ -64,7 +63,9 @@ export const AdsComponent = () => {
         adService.search({
             query: query,
             municipalityId: citySelection.municipalityId,
-            categoryId: categoryId
+            categoryId: categoryId,
+            order: Search_Order_Mod.DATE_ASC,
+            carFilter: {}
         }).then(result => {
             setAds(result.ads);
             setCategories(result.categories);
@@ -76,19 +77,8 @@ export const AdsComponent = () => {
 
     const renderAds = () => {
         return ads.map((value, index) => {
-            const adImage = AdImage(value.id, value.images[0]);
             return (
-                <div key={index} role={'button'} onClick={() => navigate(Routes.AdViewUrl + '?id=' + value.id)}>
-                    <Row className={'pb-2 pt-2'}>
-                        <Col sm={6} md={3} lg={3}>
-                            <img src={adImage} alt={'ad'} className={'w-100'}/>
-                        </Col>
-                        <Col sm={6} md={3} lg={3}>
-                            <h6>{value.title}</h6>
-                            <span>{value.description}</span>
-                        </Col>
-                    </Row>
-                </div>
+                <AdRowComponent ad={value} key={index} rootCategory={rootCategory} />
             )
         });
     }
@@ -104,31 +94,28 @@ export const AdsComponent = () => {
     return (
         <Container>
             <Row>
-                <Col sm={12} md={6} lg={6}>
-                    <Input placeholder={'Search'} value={query} onChange={(event) => setQuery(event.target.value)}/>
+                <Col sm={12} md={9} lg={9}>
+                    <InputGroup>
+                        <Input placeholder={'Search'} value={query} onChange={(event) => setQuery(event.target.value)}/>
+                        <Button color={'primary'} onClick={() => search(categoryId)}>Search</Button>
+                    </InputGroup>
                 </Col>
                 <Col sm={12} md={3} lg={3}>
                     <MunicipalityPicker selection={citySelection} setSelection={setCitySelection} hideLabel={true}/>
                 </Col>
-                <Col sm={12} md={3} lg={3}>
-                    <Button className={'w-100'} color={'primary'} onClick={() => search(categoryId)}>Search</Button>
-                </Col>
             </Row>
-            {rootCategory && rootCategory.type === CategoryType_Mod.CARS ?
-                (
-                    <CarCategoryPicker rootCategory={rootCategory} categories={categories} setCategory={categoryId => {
-                        setCategoryId(categoryId);
-                        search(categoryId);
-                    }}/>
-                )
-                :
-                (
+            <div className={'horizontal-divider mt-2 mb-2'} />
+            <Row>
+                <Col sm={12} md={3} lg={3}>
                     <AdsCategoriesComponent categories={categories} setCategory={categoryId => {
                         setCategoryId(categoryId);
                         search(categoryId);
                     }}/>
-                )}
-            {loading ? renderLoader() : renderAds()}
+                </Col>
+                <Col sm={12} md={9} lg={9}>
+                    {loading ? renderLoader() : renderAds()}
+                </Col>
+            </Row>
         </Container>
     )
 }

@@ -1,0 +1,15 @@
+.navbar-icon {
+    /* NEW CSS */
+    text-align: center;
+    color: gray;
+    width: 20px;
+
+    /* OLD CSS */
+    /*margin: 15px;*/
+    margin-bottom: 15px;
+    display: inline-block;
+    /*float: right;*/
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black
+}

@@ -6,6 +6,10 @@ public class CarAd_Mod
     
     public int Mileage { get; set; }
     
+    public int HorsePower { get; set; }
+    
+    public bool AllWheelDrive { get; set; }
+    
     public TransmissionType_Mod TransmissionType { get; set; }
     
     public FuelType_Mod FuelType { get; set; }

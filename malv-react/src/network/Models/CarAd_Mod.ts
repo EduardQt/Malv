@@ -6,6 +6,8 @@ import { CarType_Mod } from './CarType_Mod';
 export interface CarAd_Mod {
     age: number;
     mileage: number;
+    horsePower: number;
+    allWheelDrive: boolean;
     transmissionType: TransmissionType_Mod;
     fuelType: FuelType_Mod;
     carType: CarType_Mod;

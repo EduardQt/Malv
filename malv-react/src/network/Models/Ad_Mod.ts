@@ -1,4 +1,5 @@
 
+import { CarAd_Mod } from './CarAd_Mod';
 
 export interface Ad_Mod {
     id: number;
@@ -6,4 +7,6 @@ export interface Ad_Mod {
     description: string;
     author: string;
     images: string[];
+    price: number;
+    carAd: CarAd_Mod;
 }

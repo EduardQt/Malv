@@ -21,7 +21,9 @@ export const AdCreateCarComponent = (props: AdCreateCarComponentProps) => {
                 mileage: 0,
                 transmissionType: TransmissionType_Mod.MANUAL,
                 fuelType: FuelType_Mod.DIESEL,
-                carType: CarType_Mod.SEDAN
+                carType: CarType_Mod.SEDAN,
+                allWheelDrive: false,
+                horsePower: 0
             };
             props.setCarAd(carAd);
         }

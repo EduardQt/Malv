@@ -53,11 +53,7 @@ else
 }
 
 //app.UseHttpsRedirection();
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(builder.Configuration.GetSection("Static").GetValue<string>("Images")),
-    RequestPath = "/Static"
-});
+app.UseStaticFiles();
 
 app.UseRouting();
 
@@ -68,4 +64,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapFallbackToFile("index.html");
 app.Run();

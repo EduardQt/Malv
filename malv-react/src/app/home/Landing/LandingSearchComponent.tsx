@@ -27,17 +27,18 @@ export const LandingSearchComponent = () => {
     }
 
     return (
-        <div className={'w-50 p-4 bg-white'} style={{
-            margin: '1rem auto 1rem auto'
+        <div className={'w-50 ps-4 pe-4 pt-5 pb-5'} style={{
+            margin: '1rem auto 1rem 1rem'
         }}>
-            <h4>Welcome to Malv</h4>
-            <Label for={'landing-search'}>
-                Search
-            </Label>
-            <Input id={'landing-search'} placeholder={'Search'} className={'mb-3 p-2'} value={query} onChange={(event) => setQuery(event.target.value)}/>
+            <h1 className={'text-white'}>Welcome to Imesum</h1>
+            <div className={'p-4'} style={{
+                backgroundColor: 'rgb(255 255 255 / 66%)'
+            }}>
+                <Input id={'landing-search'} placeholder={'What do you want to search for?'} className={'mb-3 p-2'} value={query} onChange={(event) => setQuery(event.target.value)}/>
 
-            <MunicipalityPicker selection={citySelection} setSelection={setCitySelection} hideLabel={false} />
-            <Button onClick={search} className={'w-100 mt-3 mb-3 p-2'} color={'primary'}>Search</Button>
+                <MunicipalityPicker selection={citySelection} setSelection={setCitySelection} hideLabel={true} />
+                <Button onClick={search} className={'w-100 mt-3 mb-3 p-2'} color={'primary'}>Search</Button>
+            </div>
         </div>
     )
 }

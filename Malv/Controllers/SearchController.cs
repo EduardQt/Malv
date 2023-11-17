@@ -21,7 +21,7 @@ public class SearchController : Controller
     [HttpPost]
     public async Task<IActionResult> Search([FromBody] Search_Search_Req req)
     {
-        var ads = await _adService.Search(req.Query, req.MunicipalityId, req.CategoryId);
+        var ads = await _adService.Search(req.Query, req.MunicipalityId, req.CategoryId, req.CarFilter);
 
         ICollection<Category> categories;
         Category rootCategory = null;

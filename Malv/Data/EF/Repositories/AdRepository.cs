@@ -35,6 +35,7 @@ public class AdRepository : IAdRepository
         return await _dbContext.Ads
             .Include(i => i.AdImages)
             .Include(i => i.User)
+            .Include(i => i.CarAd)
             .SingleOrDefaultAsync(w => w.Id == id);
     }
 

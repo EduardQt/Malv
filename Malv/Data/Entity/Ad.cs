@@ -14,6 +14,7 @@ public class Ad
 
     public int UserId { get; set; }
     public int MunicipalityId { get; set; }
+    public decimal Price { get; set; }
     
     public MalvUser User { get; set; }
     public ICollection<AdImage> AdImages { get; set; }

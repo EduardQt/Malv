@@ -10,6 +10,9 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Routes} from "../../Routes";
 import {ServiceContainer} from "../../services/ServiceContainer";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUser, faBell, faEnvelope} from "@fortawesome/free-regular-svg-icons";
+import './Navigator.css'
 
 export function Navigator() {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +36,8 @@ export function Navigator() {
 
     const renderMyChatsNavLink = () => {
         if (unreadChats > 0) {
-            return (<NavLink tag={Link} className="text-dark" to={Routes.MyChatsUrl}>Messages <Badge color="primary">{unreadChats}</Badge></NavLink>);
+            return (<NavLink tag={Link} className="text-dark" to={Routes.MyChatsUrl}>Messages <Badge
+                color="primary">{unreadChats}</Badge></NavLink>);
         }
 
         return (<NavLink tag={Link} className="text-dark" to={Routes.MyChatsUrl}>Messages</NavLink>);
@@ -41,7 +45,8 @@ export function Navigator() {
 
     const renderUsername = () => {
         if (unreadChats > 0) {
-            return (<span>{ServiceContainer.userService.authTokenAbsolute.username} <Badge color="primary">{unreadChats}</Badge></span>);
+            return (<span>{ServiceContainer.userService.authTokenAbsolute.username} <Badge
+                color="primary">{unreadChats}</Badge></span>);
         }
 
         return (<span>{ServiceContainer.userService.authTokenAbsolute.username}</span>);
@@ -51,7 +56,7 @@ export function Navigator() {
         <header>
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container
                     light>
-                <NavbarBrand tag={Link} to="/">Malv.React</NavbarBrand>
+                <NavbarBrand tag={Link} to="/">Imesum.React</NavbarBrand>
                 <NavbarToggler onClick={toggle} className="mr-2"/>
                 <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={isOpen} navbar>
                     {ServiceContainer.userService.authToken ? (
@@ -68,18 +73,21 @@ export function Navigator() {
                                     </DropdownItem>
                                     <DropdownItem>
                                         <NavItem>
-                                            <NavLink tag={Link} className="text-dark" to={Routes.AdCreateUrl}>Create ad</NavLink>
+                                            <NavLink tag={Link} className="text-dark" to={Routes.AdCreateUrl}>Create
+                                                ad</NavLink>
                                         </NavItem>
                                     </DropdownItem>
                                     <DropdownItem>
                                         <NavItem>
-                                            <NavLink tag={Link} className="text-dark" to={Routes.AdWatchesUrl}>Ad watches</NavLink>
+                                            <NavLink tag={Link} className="text-dark" to={Routes.AdWatchesUrl}>Ad
+                                                watches</NavLink>
                                         </NavItem>
                                     </DropdownItem>
-                                    <DropdownItem divider />
+                                    <DropdownItem divider/>
                                     <DropdownItem>
                                         <NavItem>
-                                            <NavLink tag={Link} className="text-dark" to={Routes.SignOutUrl}>Sign out</NavLink>
+                                            <NavLink tag={Link} className="text-dark" to={Routes.SignOutUrl}>Sign
+                                                out</NavLink>
                                         </NavItem>
                                     </DropdownItem>
                                 </DropdownMenu>
@@ -100,5 +108,4 @@ export function Navigator() {
             </Navbar>
         </header>
     );
-
 }

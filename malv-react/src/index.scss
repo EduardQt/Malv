@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.horizontal-divider {
+  border-bottom: 1px solid #c8c8c8
+}
+
+.color-primary {
+  color: #3a63d5
+}
+
+$theme-colors: (
+        "primary": #3a63d5,
+        "danger": #ff4136
+);
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';

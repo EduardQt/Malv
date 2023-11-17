@@ -5,11 +5,13 @@ import {AdImage} from "../../network/APIData";
 interface AdCarouselViewProps {
     adId: number;
     images: string[];
+    onClick?: (index: number) => void;
+    activeIndex: number;
 }
 
 export const AdCarouselView = (props: AdCarouselViewProps) => {
 
-    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [activeIndex, setActiveIndex] = useState<number>(props.activeIndex);
     const [animating, setAnimating] = useState<boolean>(false);
 
     const next = () => {
@@ -29,7 +31,7 @@ export const AdCarouselView = (props: AdCarouselViewProps) => {
         setActiveIndex(newIndex);
     }
 
-    const slides = props.images.map((item) => {
+    const slides = props.images.map((item, index) => {
         const url = AdImage(props.adId, item);
         return (
             <CarouselItem
@@ -37,9 +39,13 @@ export const AdCarouselView = (props: AdCarouselViewProps) => {
                 onExited={() => setAnimating(false)}
                 key={url}
             >
-                <img src={url} alt={'Ad id'} className={'h-100 w-100'} style={{
-                    objectFit: 'cover'
-                }}/>
+                <a href={'#'} onClick={() => {
+                    if (props.onClick) props.onClick(index);
+                }}>
+                    <img src={url} alt={'Ad id'} className={'h-100 w-100'} style={{
+                        objectFit: 'cover'
+                    }}/>
+                </a>
             </CarouselItem>
         );
     });

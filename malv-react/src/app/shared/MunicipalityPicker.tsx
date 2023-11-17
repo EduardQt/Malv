@@ -60,7 +60,7 @@ export const MunicipalityPicker = ({selection, setSelection, hideLabel}: Municip
             return municipality?.name ?? 'None';
         }
 
-        return 'None';
+        return 'All';
     }
 
     return (
@@ -86,7 +86,7 @@ export const MunicipalityPicker = ({selection, setSelection, hideLabel}: Municip
                         municipalityId: null
                     });
                 }}>
-                    None
+                    All
                 </DropdownItem>
                 {renderMunicipalities()}
             </DropdownMenu>

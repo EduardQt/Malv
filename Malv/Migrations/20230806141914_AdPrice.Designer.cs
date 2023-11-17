@@ -3,6 +3,7 @@ using System;
 using Malv.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Malv.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230806141914_AdPrice")]
+    partial class AdPrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,16 +127,10 @@ namespace Malv.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<bool>("AllWheelDrive")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<int>("CarType")
                         .HasColumnType("int");
 
                     b.Property<int>("FuelType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HorsePower")
                         .HasColumnType("int");
 
                     b.Property<int>("Mileage")

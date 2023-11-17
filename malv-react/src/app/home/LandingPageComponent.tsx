@@ -19,6 +19,7 @@ import './Styles/LandingPageComponent.css'
 import {Routes} from "../../Routes";
 import {useNavigate} from "react-router-dom";
 import {AdsComponentRouteState} from "./AdsComponent";
+import {AssetImage} from "../../network/APIData";
 
 export const LandingPageComponent = () => {
 
@@ -101,7 +102,12 @@ export const LandingPageComponent = () => {
     const renderContent = () => {
         return (
             <Container>
-                <LandingSearchComponent/>
+                <div style={{
+                    background: `url(${AssetImage('landing_search_bg.jpg')}) no-repeat center center fixed`,
+                    backgroundSize: 'cover'
+                }}>
+                    <LandingSearchComponent/>
+                </div>
                 <div className={'d-flex text-center justify-content-center'}>
                     {renderBaseCategories()}
                 </div>

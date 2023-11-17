@@ -11,7 +11,7 @@ export const AdsCategoriesComponent = ({categories, setCategory}: AdsCategoriesC
     const renderCategories = () => {
         return categories.map((value, index) => {
            return (
-               <div className={'p-2'} role={"button"} onClick={() => setCategory(value.id)} key={index}>{value.title}</div>
+               <div className={'p-2 horizontal-divider'} role={"button"} onClick={() => setCategory(value.id)} key={index}>{value.title}</div>
            )
         });
     }
@@ -19,7 +19,8 @@ export const AdsCategoriesComponent = ({categories, setCategory}: AdsCategoriesC
     return (
         <Row>
             <div style={{
-                display: 'contents'
+                height: '70vh',
+                overflowX: 'scroll'
             }}>
                 {renderCategories()}
             </div>

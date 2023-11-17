@@ -25,3 +25,5 @@ export const ChatSend_URL = URL + '/Chat/Send';
 export const ChatUnreadMessages_URL = URL + '/Chat/UnreadMessages';
 
 export const AdImage = (adId: number, image: string) => `${URL}/Static/${adId}/${image}`;
+
+export const AssetImage = (image: string) => `${URL}/Static/Images/${image}`;
